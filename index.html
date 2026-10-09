@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Guía de estudio · Transformación Digital y Gobierno de TI</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📘</text></svg>">
+<style>
+:root{
+  --bg:#F2F4F1; --surface:#FFFFFF; --surface2:#E7ECEA; --ink:#18262F; --muted:#56656D;
+  --line:#CBD4D2; --accent:#1E6A84; --accent-soft:#D6E8EE; --case:#8A6418; --case-soft:#F4EAD4;
+  --ok:#2F7348; --ok-soft:#DCEFE2; --bad:#A63D2A; --bad-soft:#F6DFDA;
+  --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+  --sans:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#121A1F; --surface:#1A252C; --surface2:#22303A; --ink:#E4EAEC; --muted:#9AA9B0;
+    --line:#2F3F49; --accent:#62B3CF; --accent-soft:#1C3A47; --case:#E0B45C; --case-soft:#3A2F17;
+    --ok:#6CC08B; --ok-soft:#183626; --bad:#EE8A76; --bad-soft:#40211B;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#121A1F; --surface:#1A252C; --surface2:#22303A; --ink:#E4EAEC; --muted:#9AA9B0;
+  --line:#2F3F49; --accent:#62B3CF; --accent-soft:#1C3A47; --case:#E0B45C; --case-soft:#3A2F17;
+  --ok:#6CC08B; --ok-soft:#183626; --bad:#EE8A76; --bad-soft:#40211B;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 70px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.6;-webkit-text-size-adjust:100%}
+a{color:var(--accent)}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:4px}
+
+.layout{display:grid;grid-template-columns:280px minmax(0,1fr);min-height:100vh}
+aside{position:sticky;top:env(safe-area-inset-top,0px);height:100vh;overflow-y:auto;border-right:1px solid var(--line);padding:28px 18px;background:var(--surface)}
+.brand{font-family:var(--serif);font-size:1.3rem;line-height:1.25;margin:0 0 4px}
+.brand-sub{color:var(--muted);font-size:.88rem;margin:0 0 22px}
+.meter{height:6px;background:var(--surface2);border-radius:3px;overflow:hidden;margin:6px 0 4px}
+.meter>span{display:block;height:100%;background:var(--accent);width:0;transition:width .4s}
+.meter-label{font-size:.82rem;color:var(--muted);margin-bottom:22px}
+nav ol{list-style:none;margin:0;padding:0}
+nav li{margin:0}
+nav a{display:grid;grid-template-columns:28px 1fr auto;gap:8px;align-items:baseline;padding:9px 10px;border-radius:8px;text-decoration:none;color:var(--ink);font-size:.95rem;line-height:1.3}
+nav a:hover{background:var(--surface2)}
+nav a.active{background:var(--accent-soft)}
+nav .n{font-family:var(--serif);color:var(--accent);font-size:1.05rem}
+nav .sc{font-size:.78rem;color:var(--muted);white-space:nowrap}
+nav .sep{border-top:1px solid var(--line);margin:12px 4px}
+.theme-btn{margin-top:20px;background:none;border:1px solid var(--line);border-radius:8px;padding:6px 12px;font-size:.85rem;color:var(--muted)}
+
+main{padding:40px clamp(18px,5vw,64px) 80px;max-width:860px;width:100%}
+.mobile-bar{display:none}
+
+h1{font-family:var(--serif);font-weight:600;font-size:clamp(1.9rem,4.5vw,2.6rem);line-height:1.12;margin:0 0 10px;letter-spacing:-.01em}
+h2{font-family:var(--serif);font-weight:600;font-size:1.45rem;line-height:1.25;margin:34px 0 10px}
+h3{font-size:1.05rem;margin:22px 0 6px}
+p{margin:0 0 14px}
+.lead{font-size:1.08rem;color:var(--muted);max-width:62ch}
+.mod-num{font-family:var(--serif);font-size:4.2rem;line-height:1;color:var(--accent);opacity:.9;margin-bottom:6px}
+ul,ol.list{padding-left:1.25em;margin:0 0 14px}
+li{margin-bottom:6px}
+strong{font-weight:650}
+
+.tabs{display:flex;gap:4px;border-bottom:1px solid var(--line);margin:26px 0 8px;overflow-x:auto}
+.tab{background:none;border:0;border-bottom:3px solid transparent;padding:10px 14px;font-size:.98rem;color:var(--muted);white-space:nowrap}
+.tab[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--accent);font-weight:600}
+
+.tbl-wrap{overflow-x:auto;margin:6px 0 18px;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:.93rem;line-height:1.45}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:var(--surface2);font-weight:600}
+tr:last-child td{border-bottom:0}
+code,.formula{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.9em;background:var(--surface2);padding:1px 5px;border-radius:4px}
+
+.note{border-left:4px solid var(--accent);background:var(--accent-soft);padding:12px 16px;border-radius:0 8px 8px 0;margin:18px 0}
+.note.you{border-left-color:var(--ok);background:var(--ok-soft)}
+.note h4{margin:0 0 4px;font-size:.98rem}
+.note p:last-child,.note ul:last-child{margin-bottom:0}
+
+.case{border:1px solid var(--line);border-top:5px solid var(--case);background:var(--surface);border-radius:10px;padding:18px 20px;margin:18px 0}
+.case .tag{color:var(--case);font-weight:650;font-size:.92rem;margin-bottom:6px}
+textarea{width:100%;min-height:140px;border:1px solid var(--line);border-radius:8px;padding:12px;background:var(--bg);color:var(--ink);font:inherit;font-size:.95rem;resize:vertical}
+.btn{border:1px solid var(--accent);background:var(--accent);color:#fff;border-radius:8px;padding:9px 16px;font-size:.95rem;font-weight:600}
+:root[data-theme="dark"] .btn{color:#0E1A20}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .btn{color:#0E1A20}}
+.btn.ghost{background:none;color:var(--accent)}
+.row{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;align-items:center}
+.solution{margin-top:16px;padding-top:14px;border-top:1px dashed var(--line)}
+.saved{font-size:.82rem;color:var(--muted)}
+
+.q{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin:16px 0}
+.q-head{font-size:.82rem;color:var(--muted);margin-bottom:4px}
+.q-text{font-weight:600;margin-bottom:10px}
+.opt{display:block;width:100%;text-align:left;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px 12px;margin:7px 0;font-size:.96rem;line-height:1.4}
+.opt:hover:not([disabled]){border-color:var(--accent)}
+.opt[disabled]{cursor:default}
+.opt.correct{background:var(--ok-soft);border-color:var(--ok)}
+.opt.wrong{background:var(--bad-soft);border-color:var(--bad)}
+.opt .mark{font-weight:700;margin-right:6px}
+.fb{margin-top:10px;font-size:.94rem;border-radius:8px;padding:10px 12px}
+.fb.ok{background:var(--ok-soft)}
+.fb.bad{background:var(--bad-soft)}
+.fb b.v{display:block;margin-bottom:3px}
+.score{font-family:var(--serif);font-size:1.15rem;margin:18px 0 6px}
+
+.plan-day{border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:16px 20px;margin:14px 0}
+.plan-day h3{margin-top:0;font-family:var(--serif);font-size:1.2rem}
+
+@media (max-width:900px){
+  .layout{grid-template-columns:1fr}
+  aside{display:none}
+  .mobile-bar{display:flex;position:sticky;top:0;z-index:10;background:var(--surface);border-bottom:1px solid var(--line);padding:10px 14px;padding-top:calc(10px + env(safe-area-inset-top,0px));gap:10px;align-items:center;margin-top:calc(-1 * env(safe-area-inset-top,0px))}
+  .mobile-bar select{flex:1;font:inherit;font-size:.95rem;padding:8px 10px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--ink)}
+  .mobile-bar .pct{font-size:.82rem;color:var(--muted);white-space:nowrap}
+  main{padding-top:24px}
+  .mod-num{font-size:3.2rem}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="layout">
+  <aside>
+    <p class="brand">Guía de estudio para las pruebas técnicas</p>
+    <p class="brand-sub">Gobierno, arquitectura, seguridad y transformación digital</p>
+    <div class="meter"><span id="meterBar"></span></div>
+    <div class="meter-label" id="meterLabel"></div>
+    <nav><ol id="navList"></ol></nav>
+    <button class="theme-btn" id="themeBtn" type="button">Cambiar tema claro/oscuro</button>
+  </aside>
+  <div>
+    <div class="mobile-bar">
+      <select id="mobileNav" aria-label="Ir a sección"></select>
+      <span class="pct" id="mobilePct"></span>
+    </div>
+    <main id="main"></main>
+  </div>
+</div>
+
+<script>
+/* ============================================================
+   CONTENIDO
+   ============================================================ */
+const MODULES = [
+/* ---------------- MÓDULO 1 ---------------- */
+{
+id:"m1", title:"Gestión de proyectos",
+lead:"Elegir el enfoque correcto, dominar Scrum y Kanban, medir el desempeño con valor ganado y justificar un proyecto con un caso de negocio.",
+fund:`
+<h2>1. Predictivo, ágil e híbrido</h2>
+<p>El enfoque no se elige por moda: se elige según la <strong>certeza que tienes sobre los requisitos y la tecnología</strong>. Si ambos son claros y estables, planeas todo de entrada. Si son inciertos, entregas en ciclos cortos y ajustas.</p>
+<div class="tbl-wrap"><table>
+<tr><th>Enfoque</th><th>Cuándo usarlo</th><th>Cómo se controla</th><th>Ejemplo</th></tr>
+<tr><td>Predictivo (cascada)</td><td>Alcance claro, cambios costosos, dependencias físicas o contractuales</td><td>Línea base de alcance, cronograma y costo; control de cambios formal</td><td>Cableado y red de una sede nueva</td></tr>
+<tr><td>Ágil (adaptativo)</td><td>Requisitos que se descubren en el camino, alta interacción con usuarios</td><td>Entregas incrementales, backlog priorizado, feedback cada iteración</td><td>Desarrollo de un portal interno</td></tr>
+<tr><td>Híbrido</td><td>Partes estables y partes inciertas en el mismo proyecto</td><td>Hitos predictivos en el macro, sprints dentro de las fases de construcción</td><td>Implementación de ERP o CRM</td></tr>
+</table></div>
+<p>Un apoyo útil es la <strong>matriz de Stacey</strong>: en el eje X la incertidumbre técnica, en el Y el desacuerdo sobre requisitos. Zona simple → predictivo; zona compleja → ágil; zona caótica → actuar primero, estabilizar y luego planear.</p>
+
+<h2>2. PMBOK 7 en pocas líneas</h2>
+<p>La 7.ª edición dejó de estructurarse por procesos y pasó a <strong>12 principios</strong> y <strong>8 dominios de desempeño</strong>. Aún te pueden preguntar por la 6.ª edición (5 grupos de procesos y 10 áreas de conocimiento), así que conoce ambas.</p>
+<div class="tbl-wrap"><table>
+<tr><th>8 dominios de desempeño (PMBOK 7)</th><th>5 grupos de procesos (PMBOK 6)</th></tr>
+<tr><td>Interesados · Equipo · Enfoque de desarrollo y ciclo de vida · Planificación · Trabajo del proyecto · Entrega · Medición · Incertidumbre</td><td>Inicio · Planificación · Ejecución · Monitoreo y control · Cierre</td></tr>
+</table></div>
+<p>Las 10 áreas de la 6.ª edición: integración, alcance, cronograma, costos, calidad, recursos, comunicaciones, riesgos, adquisiciones e interesados.</p>
+
+<h2>3. Scrum (Guía 2020)</h2>
+<div class="tbl-wrap"><table>
+<tr><th>Elemento</th><th>Contenido</th></tr>
+<tr><td>3 responsabilidades</td><td><strong>Product Owner</strong>: maximiza el valor y ordena el Product Backlog. <strong>Scrum Master</strong>: vela por la efectividad del equipo y elimina impedimentos. <strong>Developers</strong>: construyen el incremento y gestionan el Sprint Backlog.</td></tr>
+<tr><td>5 eventos</td><td><strong>Sprint</strong> (máx. 1 mes) · <strong>Sprint Planning</strong> (máx. 8 h para un sprint de un mes) · <strong>Daily Scrum</strong> (15 min) · <strong>Sprint Review</strong> (máx. 4 h) · <strong>Retrospectiva</strong> (máx. 3 h)</td></tr>
+<tr><td>3 artefactos y su compromiso</td><td>Product Backlog → <strong>Product Goal</strong> · Sprint Backlog → <strong>Sprint Goal</strong> · Incremento → <strong>Definition of Done</strong></td></tr>
+</table></div>
+<p>Errores de concepto frecuentes: el Scrum Master no es jefe del equipo ni el que asigna tareas; la Review no es una demo para aprobar, es una sesión de trabajo para adaptar el backlog; la Retrospectiva mejora el <em>cómo</em> trabaja el equipo, no el producto.</p>
+
+<h2>4. Kanban</h2>
+<p>Método de flujo continuo. Tres prácticas centrales: <strong>visualizar</strong> el trabajo en un tablero, <strong>limitar el trabajo en curso (WIP)</strong> y <strong>gestionar el flujo</strong>. Limitar el WIP reduce la multitarea y deja a la vista los cuellos de botella.</p>
+<ul>
+<li><strong>Lead time</strong>: desde que se solicita hasta que se entrega.</li>
+<li><strong>Cycle time</strong>: desde que se empieza a trabajar hasta que se termina.</li>
+<li><strong>Throughput</strong>: ítems terminados por unidad de tiempo.</li>
+</ul>
+<p>Kanban encaja muy bien en equipos de operación y soporte, donde el trabajo llega continuo y no se puede congelar en sprints.</p>
+
+<h2>5. Valor ganado (EVM)</h2>
+<div class="tbl-wrap"><table>
+<tr><th>Sigla</th><th>Significado</th><th>Fórmula</th><th>Lectura</th></tr>
+<tr><td>PV</td><td>Valor planificado</td><td>—</td><td>Lo que debías llevar hecho a la fecha, en dinero</td></tr>
+<tr><td>EV</td><td>Valor ganado</td><td>% real completado × presupuesto total</td><td>Lo que realmente llevas hecho, en dinero</td></tr>
+<tr><td>AC</td><td>Costo real</td><td>—</td><td>Lo que has gastado</td></tr>
+<tr><td>CV / SV</td><td>Variación de costo / cronograma</td><td><span class="formula">EV − AC</span> / <span class="formula">EV − PV</span></td><td>Negativo = mal</td></tr>
+<tr><td>CPI / SPI</td><td>Índice de costo / cronograma</td><td><span class="formula">EV ÷ AC</span> / <span class="formula">EV ÷ PV</span></td><td>&lt; 1 = sobrecosto / atraso</td></tr>
+<tr><td>EAC</td><td>Estimado a la conclusión</td><td><span class="formula">BAC ÷ CPI</span></td><td>Cuánto costará al final si sigues igual</td></tr>
+</table></div>
+<p><strong>Truco de memoria:</strong> EV siempre va primero. Costo se compara contra AC; cronograma contra PV.</p>
+
+<h2>6. Caso de negocio</h2>
+<p>Justifica por qué invertir. Contiene: problema u oportunidad, alternativas evaluadas (incluida "no hacer nada"), costos (CAPEX y OPEX), beneficios cuantificados, riesgos y recomendación.</p>
+<ul>
+<li><strong>ROI</strong> = (beneficio − inversión) ÷ inversión.</li>
+<li><strong>Payback</strong> = tiempo en recuperar la inversión.</li>
+<li><strong>VPN</strong> = beneficios futuros traídos a hoy menos la inversión; si es positivo, el proyecto crea valor.</li>
+<li><strong>TIR</strong> = la tasa a la que el VPN es cero; se compara contra el costo de capital.</li>
+</ul>
+<p>Complementa con <strong>gestión de interesados</strong> (matriz poder/interés: gestionar de cerca, mantener satisfecho, mantener informado, monitorear) y un <strong>registro de riesgos</strong> con responsable y respuesta.</p>
+`,
+caso:{
+ prompt:`La empresa quiere reemplazar su ERP en 12 meses. Incluye finanzas, compras, inventarios y facturación electrónica. Hay un integrador externo y el negocio todavía no tiene claros todos sus procesos futuros. ¿Qué enfoque de gestión usarías, cómo lo estructurarías y qué riesgos vigilarías?`,
+ sol:`
+<p><strong>Respuesta recomendada: enfoque híbrido.</strong></p>
+<ul>
+<li><strong>Capa predictiva</strong> para lo que es estable o contractual: selección y contrato con el integrador, infraestructura y ambientes, plan de migración de datos, cronograma macro con hitos (diseño, construcción, pruebas integrales, salida en vivo) y una fecha de corte con criterios <em>go/no-go</em>.</li>
+<li><strong>Capa ágil</strong> dentro de la construcción: configuración por sprints de 2 a 3 semanas por módulo, con usuarios clave validando en cada Review. Así los procesos que el negocio aún no tiene claros se descubren con prototipos y no en papel.</li>
+<li><strong>Gobierno</strong>: comité directivo mensual (patrocinador, dueños de proceso, TI, integrador), comité operativo semanal y control de cambios formal sobre el alcance contratado.</li>
+<li><strong>Riesgos principales</strong>: calidad de datos maestros, sobre-personalización del ERP, dependencia del integrador, disponibilidad de usuarios clave, facturación electrónica ante la DIAN (no puede fallar en el corte) y resistencia al cambio.</li>
+<li><strong>Medición</strong>: valor ganado sobre el contrato, burndown por módulo, y KPIs de estabilización después del corte (tiempo de cierre contable, errores de facturación).</li>
+</ul>
+<div class="note"><h4>Errores típicos al responder</h4><ul>
+<li>Decir "ágil puro": con un contrato a precio y fecha fijos, un corte de facturación y migración de datos, necesitas hitos predictivos.</li>
+<li>Decir "cascada pura": el negocio no tiene claros sus procesos; congelar requisitos al inicio genera retrabajo.</li>
+<li>Olvidar la gestión del cambio y la migración de datos, que son las causas más comunes de fracaso en ERP.</li>
+</ul></div>`
+},
+quiz:[
+ {q:"Un proyecto de portal interno tiene usuarios que descubren lo que necesitan a medida que ven avances. ¿Qué enfoque es más adecuado?",
+  o:[["Predictivo con línea base cerrada","Congelar requisitos inciertos al inicio provoca muchos cambios formales y retrabajo."],["Ágil con entregas incrementales",""],["Ninguno: primero levantar todos los requisitos por seis meses","Es justo el error de tratar algo incierto como si fuera predecible."],["Kanban sin backlog priorizado","Kanban sirve para flujo, pero cualquier enfoque necesita priorización; el problema aquí es descubrir requisitos con feedback."]],
+  a:1, e:"Con requisitos emergentes, el feedback frecuente de los usuarios reduce el riesgo de construir lo que no se necesita."},
+ {q:"Un proyecto tiene CPI = 0,8. ¿Qué significa?",
+  o:[["Va adelantado en cronograma","El CPI mide costo, no tiempo. El tiempo lo mide el SPI."],["Por cada peso gastado se obtienen 0,80 de valor: hay sobrecosto",""],["Va 20 % por debajo del presupuesto","Al revés: CPI menor que 1 significa que gastas más de lo que produces."],["Le falta 80 % para terminar","El CPI no indica avance, sino eficiencia en costo."]],
+  a:1, e:"CPI = EV ÷ AC. Menor que 1 indica sobrecosto."},
+ {q:"Con PV = 100, EV = 80 y AC = 90, el proyecto está:",
+  o:[["Adelantado y bajo presupuesto","EV < PV indica atraso y EV < AC indica sobrecosto."],["Atrasado y por encima del presupuesto",""],["Atrasado pero bajo presupuesto","EV (80) es menor que AC (90): gastaste más de lo que produjiste."],["En línea con el plan","SPI = 0,8 y CPI ≈ 0,89, ambos menores que 1."]],
+  a:1, e:"SPI = 80/100 = 0,8 (atraso). CPI = 80/90 ≈ 0,89 (sobrecosto)."},
+ {q:"En Scrum, ¿quién es responsable de ordenar el Product Backlog?",
+  o:[["El Scrum Master","Facilita y elimina impedimentos, pero no prioriza el producto."],["El Product Owner",""],["Los Developers","Ellos gestionan el Sprint Backlog, no el Product Backlog."],["El patrocinador del proyecto","Puede influir, pero la responsabilidad formal es del Product Owner."]],
+  a:1, e:"El Product Owner es el único responsable de ordenar el Product Backlog para maximizar el valor."},
+ {q:"¿Para qué sirve principalmente limitar el WIP en Kanban?",
+  o:[["Para que cada persona tenga más tareas asignadas","Es lo contrario: busca menos trabajo simultáneo."],["Para reducir la multitarea y exponer cuellos de botella",""],["Para eliminar la necesidad de priorizar","La priorización sigue siendo necesaria."],["Para fijar fechas de entrega por sprint","Kanban no trabaja por sprints."]],
+  a:1, e:"Menos trabajo en curso significa flujo más rápido y bloqueos visibles."},
+ {q:"Una automatización cuesta 60 millones y ahorra 5 millones al mes. ¿Cuál es el payback?",
+  o:[["5 meses","Confundiste el ahorro mensual con el tiempo de recuperación."],["12 meses",""],["60 meses","Eso sería si ahorrara 1 millón al mes."],["No se puede calcular sin la TIR","El payback simple solo requiere inversión y flujo periódico."]],
+  a:1, e:"60 ÷ 5 = 12 meses."}
+]},
+
+/* ---------------- MÓDULO 2 ---------------- */
+{
+id:"m2", title:"Gobierno de TI con COBIT 2019",
+lead:"Diferenciar gobierno de gestión, conocer los 5 dominios y 40 objetivos, la cascada de metas y cómo diagnosticar capacidad.",
+fund:`
+<h2>1. Gobierno no es lo mismo que gestión</h2>
+<div class="tbl-wrap"><table>
+<tr><th></th><th>Gobierno</th><th>Gestión</th></tr>
+<tr><td>Pregunta</td><td>¿Estamos haciendo lo correcto?</td><td>¿Lo estamos haciendo bien?</td></tr>
+<tr><td>Quién</td><td>Junta directiva, comité de gobierno</td><td>Dirección ejecutiva, líderes de TI</td></tr>
+<tr><td>Ciclo</td><td><strong>Evaluar, Dirigir, Monitorear</strong> (EDM)</td><td>Planear, Construir, Ejecutar, Monitorear</td></tr>
+</table></div>
+
+<h2>2. Los 5 dominios y 40 objetivos</h2>
+<div class="tbl-wrap"><table>
+<tr><th>Dominio</th><th>Nombre</th><th>Objetivos</th></tr>
+<tr><td>EDM</td><td>Evaluar, Dirigir y Monitorear (gobierno)</td><td>5</td></tr>
+<tr><td>APO</td><td>Alinear, Planear y Organizar</td><td>14</td></tr>
+<tr><td>BAI</td><td>Construir, Adquirir e Implementar</td><td>11</td></tr>
+<tr><td>DSS</td><td>Entregar, dar Servicio y Soporte</td><td>6</td></tr>
+<tr><td>MEA</td><td>Monitorear, Evaluar y Valorar</td><td>4</td></tr>
+</table></div>
+
+<h3>Mapa: responsabilidades de la vacante → objetivos COBIT</h3>
+<p>Este mapa te sirve para responder casi cualquier pregunta de gobierno: cada responsabilidad del cargo tiene un objetivo que la respalda.</p>
+<div class="tbl-wrap"><table>
+<tr><th>Responsabilidad del cargo</th><th>Objetivo COBIT</th></tr>
+<tr><td>Diseñar el plan de tecnología alineado a la estrategia</td><td>APO02 Estrategia gestionada</td></tr>
+<tr><td>Diseñar y mantener la arquitectura</td><td>APO03 Arquitectura empresarial gestionada</td></tr>
+<tr><td>Gestionar el presupuesto de TI</td><td>APO06 Presupuesto y costos gestionados</td></tr>
+<tr><td>Gestionar proveedores estratégicos</td><td>APO10 Proveedores gestionados</td></tr>
+<tr><td>Evaluar y controlar riesgos de TI</td><td>APO12 Riesgo gestionado · EDM03 Optimización del riesgo</td></tr>
+<tr><td>Seguridad de la información</td><td>APO13 Seguridad gestionada · DSS05 Servicios de seguridad</td></tr>
+<tr><td>Liderar proyectos de implementación</td><td>BAI01 Programas · BAI11 Proyectos gestionados</td></tr>
+<tr><td>Monitorear capacidad y disponibilidad</td><td>BAI04 Disponibilidad y capacidad</td></tr>
+<tr><td>Documentación funcional y técnica</td><td>BAI08 Conocimiento gestionado</td></tr>
+<tr><td>Continuidad de servicios</td><td>DSS04 Continuidad gestionada</td></tr>
+<tr><td>Análisis de desempeño y mejora continua</td><td>MEA01 Monitoreo del desempeño y conformidad</td></tr>
+<tr><td>Cumplimiento legal y regulatorio</td><td>MEA03 Cumplimiento de requisitos externos</td></tr>
+</table></div>
+
+<h2>3. Cascada de metas</h2>
+<p>Así se traduce la estrategia del negocio en objetivos de TI:</p>
+<ol class="list">
+<li><strong>Necesidades de los interesados</strong> (drivers).</li>
+<li><strong>Metas empresariales</strong> (por ejemplo, cumplimiento regulatorio, eficiencia operativa).</li>
+<li><strong>Metas de alineamiento</strong> (metas de I&amp;T que soportan a las empresariales).</li>
+<li><strong>Objetivos de gobierno y gestión</strong> (los 40 objetivos).</li>
+</ol>
+
+<h2>4. Componentes del sistema de gobierno</h2>
+<p>Cada objetivo se logra con 7 tipos de componentes: procesos; estructuras organizacionales; principios, políticas y marcos; información; cultura, ética y comportamiento; personas, habilidades y competencias; y servicios, infraestructura y aplicaciones. Es decir: un proceso solo no basta, necesitas roles, políticas, personas preparadas y herramientas.</p>
+
+<h2>5. Factores de diseño y niveles de capacidad</h2>
+<p>COBIT 2019 se adapta a cada organización con <strong>11 factores de diseño</strong>: estrategia, metas empresariales, perfil de riesgo, problemas de I&amp;T, panorama de amenazas, requisitos de cumplimiento, rol de TI, modelo de abastecimiento, métodos de implementación, estrategia de adopción tecnológica y tamaño de la empresa.</p>
+<div class="tbl-wrap"><table>
+<tr><th>Nivel de capacidad</th><th>Descripción práctica</th></tr>
+<tr><td>0</td><td>Falta de capacidad básica</td></tr>
+<tr><td>1</td><td>Se hace de forma incompleta o informal</td></tr>
+<tr><td>2</td><td>Se logra el propósito con un conjunto básico de actividades</td></tr>
+<tr><td>3</td><td>Definido: documentado y estandarizado en la organización</td></tr>
+<tr><td>4</td><td>Medido cuantitativamente</td></tr>
+<tr><td>5</td><td>Optimizado: mejora continua</td></tr>
+</table></div>
+
+<h2>6. COBIT frente a otros marcos</h2>
+<p>COBIT es el marco <strong>integrador</strong>: dice <em>qué</em> gobernar y controlar. ITIL dice <em>cómo</em> gestionar servicios, TOGAF <em>cómo</em> hacer arquitectura, ISO 27001 <em>cómo</em> gestionar la seguridad y PMBOK/Scrum <em>cómo</em> gestionar proyectos. En una prueba, decir que se complementan siempre suma.</p>
+<p>Herramienta clave: la <strong>matriz RACI</strong> (Responsable, Aprobador, Consultado, Informado). Solo debe haber un Aprobador por actividad.</p>
+`,
+caso:{
+ prompt:`La gerencia general te dice: "Queremos tener gobierno de TI, pero no queremos burocracia". La empresa no tiene comité de TI, el presupuesto se aprueba por pedidos sueltos y nadie mide el desempeño de TI. ¿Cómo implementarías gobierno de TI en los primeros 6 meses?`,
+ sol:`
+<ul>
+<li><strong>Mes 1, diagnóstico</strong>: entrevistas con la gerencia para entender metas empresariales; aplicar los factores de diseño de COBIT para saber qué objetivos importan más; evaluar capacidad actual (0 a 5) solo en 6 a 8 objetivos prioritarios, por ejemplo APO02, APO06, APO10, APO12, APO13, BAI11 y DSS04.</li>
+<li><strong>Mes 2, estructura mínima</strong>: crear un comité de TI trimestral con la gerencia (gobierno: EDM) y una matriz RACI de decisiones clave (quién aprueba inversiones, cambios y proveedores).</li>
+<li><strong>Meses 2 y 3, portafolio y presupuesto</strong>: pasar de pedidos sueltos a un portafolio priorizado por valor y riesgo, con presupuesto anual separado en funcionamiento e inversión.</li>
+<li><strong>Meses 3 a 5, políticas esenciales</strong>: seguridad, gestión de cambios y proveedores. Pocas, cortas y aplicadas.</li>
+<li><strong>Mes 6, medición</strong>: tablero con 5 a 8 indicadores (cumplimiento de SLA, avance de portafolio, ejecución presupuestal, incidentes de seguridad, disponibilidad de servicios críticos) y segunda evaluación de capacidad para mostrar avance.</li>
+</ul>
+<div class="note"><h4>Errores típicos al responder</h4><ul>
+<li>Querer implementar los 40 objetivos: COBIT pide adaptar con factores de diseño y priorizar.</li>
+<li>Confundir gobierno con "hacer más procesos": el gobierno es dirección, decisión y supervisión.</li>
+<li>No medir línea base: sin evaluación inicial no puedes demostrar mejora.</li>
+</ul></div>`
+},
+quiz:[
+ {q:"El dominio EDM de COBIT corresponde a:",
+  o:[["Gestión operativa de TI","La gestión está en APO, BAI, DSS y MEA."],["Gobierno",""],["Seguridad de la información","Seguridad está en APO13 y DSS05."],["Desarrollo de software","El desarrollo está en BAI03."]],
+  a:1, e:"EDM (Evaluar, Dirigir, Monitorear) es el único dominio de gobierno."},
+ {q:"La junta pregunta si las inversiones en TI están generando el valor prometido. ¿Qué objetivo de gobierno lo cubre?",
+  o:[["EDM02 Entrega de beneficios asegurada",""],["DSS02 Solicitudes e incidentes","Es operación de servicio, no valor de inversiones."],["BAI06 Cambios de TI","Gestiona cambios técnicos, no beneficios."],["APO13 Seguridad","No tiene que ver con retorno de inversiones."]],
+  a:0, e:"EDM02 asegura que las inversiones de I&T entreguen el valor esperado."},
+ {q:"¿Qué objetivo COBIT respalda la gestión de proveedores estratégicos?",
+  o:[["APO08 Relaciones","APO08 gestiona la relación con el negocio, no con proveedores."],["APO10 Proveedores gestionados",""],["BAI09 Activos","Son activos, no contratos de proveedores."],["MEA03 Cumplimiento","Es cumplimiento externo."]],
+  a:1, e:"APO10 gestiona proveedores: selección, contratos, desempeño y riesgo."},
+ {q:"Un proceso está documentado y estandarizado en toda la organización, pero no se mide cuantitativamente. ¿Qué nivel de capacidad tiene?",
+  o:[["Nivel 2","El nivel 2 logra el propósito básico, pero no está estandarizado."],["Nivel 3",""],["Nivel 4","El 4 exige medición cuantitativa."],["Nivel 5","El 5 exige mejora continua sobre la medición."]],
+  a:1, e:"Nivel 3 = definido: documentado y estandarizado."},
+ {q:"¿Cuál es el orden correcto de la cascada de metas?",
+  o:[["Objetivos de gobierno → metas de alineamiento → metas empresariales","Está invertido: se parte del negocio."],["Necesidades de interesados → metas empresariales → metas de alineamiento → objetivos de gobierno y gestión",""],["Metas de alineamiento → necesidades de interesados → objetivos","Las metas de alineamiento derivan de las empresariales."],["Metas empresariales → objetivos → necesidades de interesados","Las necesidades de interesados son el origen."]],
+  a:1, e:"Se parte de los interesados y se baja hasta los objetivos de I&T."},
+ {q:"¿Cuál afirmación sobre COBIT e ITIL es correcta?",
+  o:[["Son excluyentes: se adopta uno u otro","Son complementarios."],["COBIT define qué gobernar y controlar; ITIL detalla cómo gestionar servicios",""],["ITIL reemplazó a COBIT en 2019","Falso, ambos siguen vigentes."],["COBIT es solo para auditoría financiera","Nació en auditoría, pero hoy es un marco de gobierno de I&T."]],
+  a:1, e:"COBIT es el paraguas integrador; ITIL es el detalle de gestión de servicios."}
+]},
+
+/* ---------------- MÓDULO 3 ---------------- */
+{
+id:"m3", title:"Gestión de servicios con ITIL 4",
+lead:"El sistema de valor del servicio, las 4 dimensiones, los 7 principios y las prácticas que más se preguntan: incidentes, problemas, cambios y niveles de servicio.",
+fund:`
+<h2>1. Sistema de Valor del Servicio (SVS)</h2>
+<p>ITIL 4 deja atrás el ciclo de vida de ITIL v3 (estrategia, diseño, transición, operación y mejora continua) y lo reemplaza por un sistema con 5 componentes: <strong>principios guía</strong>, <strong>gobierno</strong>, <strong>cadena de valor del servicio</strong>, <strong>prácticas</strong> y <strong>mejora continua</strong>. Entra una oportunidad o demanda y sale valor.</p>
+
+<h2>2. Las 4 dimensiones</h2>
+<ul>
+<li>Organizaciones y personas.</li>
+<li>Información y tecnología.</li>
+<li>Socios y proveedores.</li>
+<li>Flujos de valor y procesos.</li>
+</ul>
+<p>Todo servicio debe pensarse en las cuatro. Un error común es diseñar solo la tecnología.</p>
+
+<h2>3. Los 7 principios guía</h2>
+<ol class="list">
+<li>Enfocarse en el valor.</li>
+<li>Comenzar donde se está (evaluar lo existente antes de rehacer).</li>
+<li>Progresar iterativamente con retroalimentación.</li>
+<li>Colaborar y promover la visibilidad.</li>
+<li>Pensar y trabajar de forma holística.</li>
+<li>Mantenerlo simple y práctico.</li>
+<li>Optimizar y automatizar (en ese orden: primero optimizar).</li>
+</ol>
+
+<h2>4. Cadena de valor: 6 actividades</h2>
+<p>Planear · Mejorar · Involucrar (engage) · Diseñar y hacer la transición · Obtener/Construir · Entregar y dar soporte.</p>
+<p>ITIL 4 tiene <strong>34 prácticas</strong>: 14 de gestión general, 17 de gestión de servicios y 3 de gestión técnica.</p>
+
+<h2>5. Prácticas clave</h2>
+<div class="tbl-wrap"><table>
+<tr><th>Práctica</th><th>Objetivo</th><th>Concepto clave</th></tr>
+<tr><td>Gestión de incidentes</td><td>Restaurar el servicio lo antes posible</td><td>Prioridad = impacto × urgencia</td></tr>
+<tr><td>Gestión de problemas</td><td>Encontrar y eliminar la causa raíz</td><td>Error conocido, solución temporal (workaround), análisis de causa raíz</td></tr>
+<tr><td>Habilitación del cambio</td><td>Maximizar cambios exitosos controlando el riesgo</td><td>Estándar (preaprobado), normal (evaluado), de emergencia (urgente)</td></tr>
+<tr><td>Gestión de solicitudes de servicio</td><td>Atender pedidos estándar del usuario</td><td>No es una falla: instalar software, crear usuario, pedir acceso</td></tr>
+<tr><td>Gestión de niveles de servicio</td><td>Acordar y medir el servicio</td><td>SLA con el cliente, OLA entre áreas internas, contrato de soporte (UC) con proveedores</td></tr>
+<tr><td>Gestión de configuración</td><td>Saber qué hay y cómo se relaciona</td><td>CMDB y elementos de configuración (CI)</td></tr>
+<tr><td>Mesa de servicio</td><td>Punto único de contacto</td><td>Shift-left: resolver en el primer nivel o por autoservicio</td></tr>
+</table></div>
+
+<h3>Matriz de prioridad típica</h3>
+<div class="tbl-wrap"><table>
+<tr><th>Impacto \\ Urgencia</th><th>Alta</th><th>Media</th><th>Baja</th></tr>
+<tr><td>Alto (toda una sede o servicio crítico)</td><td>P1 Crítica</td><td>P2 Alta</td><td>P3 Media</td></tr>
+<tr><td>Medio (un área)</td><td>P2 Alta</td><td>P3 Media</td><td>P4 Baja</td></tr>
+<tr><td>Bajo (un usuario)</td><td>P3 Media</td><td>P4 Baja</td><td>P5 Planificada</td></tr>
+</table></div>
+
+<h2>6. Indicadores de servicio</h2>
+<ul>
+<li>Cumplimiento de SLA (% de casos dentro del tiempo acordado).</li>
+<li>MTTR (tiempo medio de restauración).</li>
+<li>Resolución en el primer contacto.</li>
+<li>Reincidencia de incidentes (señal de problemas sin resolver).</li>
+<li>Tasa de cambios exitosos y de cambios que generan incidentes.</li>
+<li>Satisfacción del usuario (CSAT).</li>
+</ul>
+`,
+caso:{
+ prompt:`La mesa de ayuda está saturada. Los usuarios se quejan de tiempos largos, cada semana se repiten fallas de la VPN y todo entra por correo y WhatsApp sin clasificación. ¿Qué harías en los próximos 90 días?`,
+ sol:`
+<ul>
+<li><strong>Canal único y clasificación</strong>: todo entra por la herramienta de mesa de servicio; separar incidentes de solicitudes de servicio y aplicar la matriz de impacto × urgencia.</li>
+<li><strong>Catálogo de servicios y SLA</strong>: publicar qué se atiende y en cuánto tiempo, por prioridad.</li>
+<li><strong>Gestión de problemas para la VPN</strong>: abrir un problema, analizar causa raíz (5 porqués, Ishikawa, revisión de logs del firewall), documentar el error conocido con su solución temporal y llevar la corrección definitiva por gestión de cambios.</li>
+<li><strong>Shift-left</strong>: base de conocimiento, autoservicio para restablecer contraseñas y automatización de solicitudes repetitivas.</li>
+<li><strong>Medición semanal</strong>: volumen por categoría, cumplimiento de SLA, MTTR, reincidencia. Revisión mensual con mejora continua.</li>
+</ul>
+<div class="note"><h4>Errores típicos al responder</h4><ul>
+<li>Pedir más personal como primera medida, sin depurar la demanda.</li>
+<li>Resolver la VPN cada semana como incidente sin abrir un problema: se apagan incendios pero no se elimina la causa.</li>
+<li>Aplicar un cambio en el firewall sin pasar por habilitación del cambio.</li>
+</ul></div>`
+},
+quiz:[
+ {q:"Un usuario pide que le instalen un software estándar aprobado. ¿Cómo se clasifica?",
+  o:[["Incidente","No hay interrupción ni degradación del servicio."],["Solicitud de servicio",""],["Problema","No hay una causa raíz que investigar."],["Cambio normal","Es un pedido estándar, normalmente preaprobado."]],
+  a:1, e:"Es un pedido rutinario del usuario, no una falla."},
+ {q:"Varios incidentes se repiten y no se conoce su causa. ¿Qué práctica debe actuar?",
+  o:[["Gestión de incidentes","Incidentes restaura; no elimina la causa."],["Gestión de problemas",""],["Gestión de solicitudes","No hay pedidos de usuario."],["Gestión de niveles de servicio","Mide y acuerda, no investiga causas."]],
+  a:1, e:"Problemas busca la causa raíz y la elimina."},
+ {q:"Un cambio de bajo riesgo, frecuente y con procedimiento documentado es un:",
+  o:[["Cambio de emergencia","Ese es para situaciones urgentes."],["Cambio normal","El normal requiere evaluación y autorización cada vez."],["Cambio estándar",""],["Incidente","No es una falla."]],
+  a:2, e:"El cambio estándar está preaprobado."},
+ {q:"El acuerdo entre la mesa de servicio y el equipo interno de redes sobre tiempos de respuesta es un:",
+  o:[["SLA","El SLA es con el cliente o usuario."],["OLA",""],["Contrato de soporte (UC)","El UC es con un proveedor externo."],["Catálogo de servicios","El catálogo lista servicios, no es un acuerdo interno."]],
+  a:1, e:"OLA = acuerdo de nivel operativo entre áreas internas."},
+ {q:"El principio 'Comenzar donde se está' significa:",
+  o:[["Empezar de cero para no heredar problemas","Es justo lo contrario."],["Evaluar lo que ya existe y aprovecharlo antes de rehacer",""],["Implementar primero la herramienta","El principio no habla de herramientas."],["Empezar por el nivel 1 de soporte","No tiene que ver con niveles de soporte."]],
+  a:1, e:"Se mide y aprovecha lo existente antes de construir algo nuevo."},
+ {q:"Cae el internet de toda una sede durante el cierre de facturación. ¿Qué prioridad tiene?",
+  o:[["P1 Crítica",""],["P3 Media","El impacto es alto (toda una sede) y la urgencia también."],["P4 Baja","Afecta a muchos usuarios en un momento crítico."],["Se trata como solicitud de servicio","Es una interrupción, por tanto incidente."]],
+  a:0, e:"Impacto alto × urgencia alta = P1."}
+]},
+
+/* ---------------- MÓDULO 4 ---------------- */
+{
+id:"m4", title:"Arquitectura empresarial con TOGAF",
+lead:"El método ADM, los 4 dominios de arquitectura, el análisis de brechas y cómo racionalizar un portafolio de aplicaciones.",
+fund:`
+<h2>1. Qué es la arquitectura empresarial</h2>
+<p>Es la disciplina que conecta la estrategia del negocio con sus procesos, datos, aplicaciones y tecnología, para decidir cómo evolucionar de un estado actual a uno objetivo de forma ordenada. TOGAF es el marco más usado; su versión vigente es <strong>TOGAF Standard, 10.ª edición (2022)</strong>.</p>
+
+<h2>2. Los 4 dominios (BDAT)</h2>
+<div class="tbl-wrap"><table>
+<tr><th>Dominio</th><th>Responde a</th><th>Artefactos típicos</th></tr>
+<tr><td>Negocio</td><td>¿Qué capacidades y procesos tiene la empresa?</td><td>Mapa de capacidades, cadena de valor, organigrama</td></tr>
+<tr><td>Datos</td><td>¿Qué información existe y quién es su dueño?</td><td>Modelo de datos, entidades maestras, flujos de datos</td></tr>
+<tr><td>Aplicaciones</td><td>¿Qué sistemas soportan cada proceso?</td><td>Inventario de aplicaciones, matriz aplicación–proceso, mapa de integraciones</td></tr>
+<tr><td>Tecnología</td><td>¿Sobre qué infraestructura corre todo?</td><td>Diagrama de infraestructura, plataformas, redes, nube</td></tr>
+</table></div>
+
+<h2>3. El ADM (Método de Desarrollo de Arquitectura)</h2>
+<p>Es un ciclo iterativo. En el centro está la <strong>gestión de requisitos</strong>, que alimenta todas las fases.</p>
+<div class="tbl-wrap"><table>
+<tr><th>Fase</th><th>Qué se hace</th></tr>
+<tr><td>Preliminar</td><td>Preparar la capacidad de arquitectura: principios, marco, roles</td></tr>
+<tr><td>A. Visión de arquitectura</td><td>Alcance, interesados, objetivos, visión de alto nivel y aprobación</td></tr>
+<tr><td>B. Arquitectura de negocio</td><td>Línea base y objetivo del negocio, brechas</td></tr>
+<tr><td>C. Sistemas de información</td><td>Arquitectura de <strong>datos</strong> y de <strong>aplicaciones</strong></td></tr>
+<tr><td>D. Tecnología</td><td>Infraestructura y plataformas</td></tr>
+<tr><td>E. Oportunidades y soluciones</td><td>Agrupar brechas en paquetes de trabajo, definir arquitecturas de transición</td></tr>
+<tr><td>F. Planificación de la migración</td><td>Hoja de ruta priorizada por valor, costo y riesgo</td></tr>
+<tr><td>G. Gobierno de la implementación</td><td>Asegurar que los proyectos cumplan la arquitectura</td></tr>
+<tr><td>H. Gestión del cambio de arquitectura</td><td>Mantener la arquitectura vigente ante cambios del negocio o la tecnología</td></tr>
+</table></div>
+
+<h2>4. Conceptos que suelen preguntar</h2>
+<ul>
+<li><strong>Línea base vs. objetivo</strong>: el estado actual y el deseado. El <strong>análisis de brechas</strong> compara ambos.</li>
+<li><strong>Arquitecturas de transición</strong>: estados intermedios estables entre la línea base y el objetivo.</li>
+<li><strong>Bloques de construcción</strong>: ABB (de arquitectura, qué se necesita) y SBB (de solución, con qué producto se implementa).</li>
+<li><strong>Junta de arquitectura</strong>: órgano que aprueba arquitecturas y otorga dispensas.</li>
+<li><strong>Repositorio de arquitectura</strong> y <strong>Enterprise Continuum</strong>: dónde se guardan y clasifican los activos de arquitectura, de lo genérico a lo específico.</li>
+<li><strong>Interesados, puntos de vista y vistas</strong>: cada interesado tiene preocupaciones; la vista es la representación que las responde.</li>
+<li><strong>ArchiMate</strong>: lenguaje de modelado que se usa junto con TOGAF.</li>
+</ul>
+
+<h2>5. Principios de arquitectura</h2>
+<p>Cada principio tiene 4 partes: <strong>nombre, enunciado, justificación e implicaciones</strong>. Ejemplo:</p>
+<div class="tbl-wrap"><table>
+<tr><th>Parte</th><th>Ejemplo</th></tr>
+<tr><td>Nombre</td><td>Integración por APIs</td></tr>
+<tr><td>Enunciado</td><td>Los sistemas se integran mediante APIs documentadas, no con conexiones directas a bases de datos</td></tr>
+<tr><td>Justificación</td><td>Reduce el acoplamiento y facilita reemplazar sistemas</td></tr>
+<tr><td>Implicaciones</td><td>Se requiere una capa de integración, catálogo de APIs y gobierno de versiones</td></tr>
+</table></div>
+
+<h2>6. Racionalización de aplicaciones (modelo TIME)</h2>
+<div class="tbl-wrap"><table>
+<tr><th>Decisión</th><th>Cuándo</th></tr>
+<tr><td>Tolerate (tolerar)</td><td>Buena calidad técnica, bajo valor de negocio</td></tr>
+<tr><td>Invest (invertir)</td><td>Alta calidad técnica y alto valor</td></tr>
+<tr><td>Migrate (migrar)</td><td>Alto valor, pero tecnología deficiente</td></tr>
+<tr><td>Eliminate (eliminar)</td><td>Bajo valor y baja calidad, o redundante</td></tr>
+</table></div>
+
+<h2>7. Patrones de integración</h2>
+<p><strong>Punto a punto</strong> (rápido al inicio, inmanejable con muchas apps) → <strong>bus de integración (ESB)</strong> → <strong>APIs gestionadas</strong> (API gateway, APIs por capas) → <strong>orientado a eventos</strong> (desacoplado, en tiempo real). Con <em>n</em> sistemas en punto a punto puedes llegar a n×(n−1)/2 conexiones.</p>
+`,
+caso:{
+ prompt:`La compañía tiene unas 15 aplicaciones: ERP, CRM, varias herramientas internas y archivos de Excel críticos. Se integran punto a punto, hay datos de clientes duplicados en tres sistemas y cada área compra software por su cuenta. Te piden una propuesta de arquitectura objetivo y cómo llegar a ella.`,
+ sol:`
+<ul>
+<li><strong>Fase A, visión</strong>: definir alcance, patrocinador y objetivo de negocio (por ejemplo, una sola visión del cliente y reducir costo de licencias).</li>
+<li><strong>Línea base</strong>: inventario de aplicaciones con dueño, costo, procesos que soporta e integraciones; mapa de capacidades del negocio.</li>
+<li><strong>Racionalización TIME</strong>: decidir qué se mantiene, en qué se invierte, qué se migra y qué se elimina.</li>
+<li><strong>Arquitectura objetivo</strong>: un sistema maestro por entidad (por ejemplo, el CRM es dueño del cliente), una capa de integración con APIs en lugar de punto a punto y un repositorio analítico para reportes.</li>
+<li><strong>Fases E y F</strong>: dos o tres arquitecturas de transición, hoja de ruta priorizada por valor y riesgo.</li>
+<li><strong>Fase G, gobierno</strong>: principios de arquitectura aprobados, una junta de arquitectura que revise toda compra o desarrollo nuevo.</li>
+</ul>
+<div class="note"><h4>Errores típicos al responder</h4><ul>
+<li>Proponer reemplazar todo por un solo sistema de un golpe.</li>
+<li>Dibujar la arquitectura objetivo sin levantar la línea base.</li>
+<li>Olvidar el gobierno: sin una junta de arquitectura, las áreas seguirán comprando por su cuenta.</li>
+</ul></div>`
+},
+quiz:[
+ {q:"¿En qué fase del ADM se elabora la hoja de ruta de migración priorizada?",
+  o:[["Fase A","La A define visión y alcance."],["Fase E","La E identifica paquetes de trabajo y transiciones, pero el plan detallado es la F."],["Fase F",""],["Fase H","La H gestiona cambios a la arquitectura vigente."]],
+  a:2, e:"F = planificación de la migración."},
+ {q:"La fase C del ADM cubre:",
+  o:[["Arquitectura de negocio","Esa es la fase B."],["Arquitectura de datos y de aplicaciones",""],["Arquitectura tecnológica","Esa es la fase D."],["Gobierno de la implementación","Esa es la fase G."]],
+  a:1, e:"C = sistemas de información: datos y aplicaciones."},
+ {q:"El análisis de brechas compara:",
+  o:[["El presupuesto con el gasto real","Eso es control financiero."],["La arquitectura de línea base con la arquitectura objetivo",""],["Los requisitos con los casos de prueba","Eso es trazabilidad de pruebas."],["Dos proveedores entre sí","Eso es evaluación de proveedores."]],
+  a:1, e:"Se identifica qué falta, qué sobra y qué cambia entre el estado actual y el deseado."},
+ {q:"Asegurar que los proyectos en ejecución cumplan la arquitectura definida corresponde a la fase:",
+  o:[["G, gobierno de la implementación",""],["B, arquitectura de negocio","No trata de proyectos en ejecución."],["Preliminar","Prepara la capacidad de arquitectura."],["D, tecnología","Define infraestructura."]],
+  a:0, e:"La fase G supervisa la implementación."},
+ {q:"¿Cuáles son las 4 partes de un principio de arquitectura en TOGAF?",
+  o:[["Objetivo, alcance, riesgo y costo","Son elementos de un proyecto, no de un principio."],["Nombre, enunciado, justificación e implicaciones",""],["Negocio, datos, aplicaciones y tecnología","Esos son los dominios."],["Visión, misión, valores y metas","Son elementos de estrategia corporativa."]],
+  a:1, e:"Formato estándar de principios de TOGAF."},
+ {q:"Una aplicación es costosa, redundante con otra y aporta poco valor. Según TIME:",
+  o:[["Invertir","Se invierte en lo que tiene alto valor."],["Tolerar","Se tolera lo que funciona bien aunque aporte poco."],["Migrar","Se migra lo valioso con tecnología débil."],["Eliminar",""]],
+  a:3, e:"Bajo valor y redundancia: candidata a eliminar."}
+]},
+
+/* ---------------- MÓDULO 5 ---------------- */
+{
+id:"m5", title:"Seguridad de la información",
+lead:"ISO 27001:2022 y el SGSI, gestión de riesgos, NIST CSF 2.0, principios de diseño seguro y respuesta a incidentes.",
+fund:`
+<h2>1. Conceptos base</h2>
+<p>La triada <strong>CID</strong>: <strong>confidencialidad</strong> (solo accede quien debe), <strong>integridad</strong> (la información no se altera sin autorización) y <strong>disponibilidad</strong> (está cuando se necesita). Se complementa con autenticidad, trazabilidad y no repudio.</p>
+
+<h2>2. ISO/IEC 27001:2022 y el SGSI</h2>
+<p>Un SGSI (sistema de gestión de seguridad de la información) es el conjunto de políticas, procesos y controles para gestionar la seguridad con un ciclo PHVA (planear, hacer, verificar, actuar).</p>
+<div class="tbl-wrap"><table>
+<tr><th>Cláusula</th><th>Contenido</th></tr>
+<tr><td>4</td><td>Contexto de la organización y alcance del SGSI</td></tr>
+<tr><td>5</td><td>Liderazgo y política de seguridad</td></tr>
+<tr><td>6</td><td>Planificación: evaluación y tratamiento de riesgos, objetivos</td></tr>
+<tr><td>7</td><td>Soporte: recursos, competencia, concientización, documentación</td></tr>
+<tr><td>8</td><td>Operación</td></tr>
+<tr><td>9</td><td>Evaluación del desempeño: monitoreo, auditoría interna, revisión por la dirección</td></tr>
+<tr><td>10</td><td>Mejora: no conformidades y acciones correctivas</td></tr>
+</table></div>
+<p>El <strong>Anexo A</strong> tiene <strong>93 controles en 4 temas</strong>: organizacionales (37), de personas (8), físicos (14) y tecnológicos (34). La guía de implementación detallada es la <strong>ISO/IEC 27002</strong>.</p>
+<p>La <strong>Declaración de Aplicabilidad (SoA)</strong> lista los 93 controles e indica cuáles se aplican, cuáles se excluyen y por qué.</p>
+
+<h2>3. Gestión de riesgos</h2>
+<ol class="list">
+<li>Identificar <strong>activos</strong> (información, sistemas, personas, instalaciones).</li>
+<li>Identificar <strong>amenazas</strong> y <strong>vulnerabilidades</strong>.</li>
+<li>Valorar el riesgo: <span class="formula">riesgo = probabilidad × impacto</span>.</li>
+<li>Comparar con el <strong>apetito de riesgo</strong>.</li>
+<li>Tratar y monitorear.</li>
+</ol>
+<div class="tbl-wrap"><table>
+<tr><th>Opción de tratamiento</th><th>Ejemplo</th></tr>
+<tr><td>Mitigar (modificar)</td><td>Implementar MFA, segmentar la red</td></tr>
+<tr><td>Transferir (compartir)</td><td>Contratar un ciberseguro o tercerizar con responsabilidad contractual</td></tr>
+<tr><td>Evitar</td><td>No lanzar un servicio o dejar de usar una tecnología riesgosa</td></tr>
+<tr><td>Aceptar (retener)</td><td>Asumir un riesgo bajo, aprobado formalmente por el dueño del riesgo</td></tr>
+</table></div>
+<p><strong>Riesgo inherente</strong>: antes de controles. <strong>Riesgo residual</strong>: después de aplicarlos. Normas de referencia: ISO/IEC 27005 (riesgos de seguridad) e ISO 31000 (riesgos en general).</p>
+
+<h2>4. NIST Cybersecurity Framework 2.0</h2>
+<p>Seis funciones: <strong>Gobernar</strong> (nueva en la versión 2.0, de 2024), <strong>Identificar</strong>, <strong>Proteger</strong>, <strong>Detectar</strong>, <strong>Responder</strong> y <strong>Recuperar</strong>. Es útil para medir madurez y presentar el estado de seguridad a la gerencia.</p>
+
+<h2>5. Principios de diseño seguro</h2>
+<ul>
+<li><strong>Defensa en profundidad</strong>: varias capas de control.</li>
+<li><strong>Mínimo privilegio</strong>: cada cuenta con los permisos justos.</li>
+<li><strong>Zero Trust</strong>: nunca confiar por estar dentro de la red; verificar identidad, dispositivo y contexto siempre.</li>
+<li><strong>Segmentación</strong> de red y separación de ambientes.</li>
+<li>Controles <strong>preventivos</strong> (MFA, firewall), <strong>detectivos</strong> (SIEM, alertas) y <strong>correctivos</strong> (restauración de respaldos).</li>
+</ul>
+
+<h2>6. Respuesta a incidentes (NIST SP 800-61)</h2>
+<ol class="list">
+<li>Preparación.</li>
+<li>Detección y análisis.</li>
+<li>Contención, erradicación y recuperación.</li>
+<li>Actividades post-incidente (lecciones aprendidas).</li>
+</ol>
+`,
+caso:{
+ prompt:`Un lunes detectan que la cuenta de correo de la tesorera fue comprometida. Hay una regla que reenvía los correos con la palabra "factura" a una dirección externa, y un proveedor recibió un correo pidiendo cambiar la cuenta bancaria de pago. ¿Cómo gestionas el incidente y qué cambias después?`,
+ sol:`
+<ul>
+<li><strong>Contención inmediata</strong>: cerrar sesiones activas, restablecer contraseña, revocar tokens, eliminar la regla de reenvío y bloquear la dirección externa. Avisar a tesorería y al proveedor para congelar cualquier cambio de cuenta bancaria.</li>
+<li><strong>Análisis</strong>: revisar registros de inicio de sesión y de auditoría (desde dónde y cuándo entraron), qué correos se reenviaron, si hubo aplicaciones o conectores autorizados por el atacante y si otras cuentas recibieron el mismo phishing.</li>
+<li><strong>Erradicación y recuperación</strong>: eliminar conectores o aplicaciones maliciosas, verificar SPF, DKIM y DMARC, y confirmar que el buzón queda limpio.</li>
+<li><strong>Notificación</strong>: si se expusieron datos personales, evaluar el reporte del incidente a la SIC a través del RNBD; informar a la gerencia.</li>
+<li><strong>Lecciones aprendidas</strong>: MFA obligatorio con acceso condicional, alertas sobre reglas de reenvío externo, procedimiento de verificación telefónica de cambios de cuenta bancaria y capacitación antiphishing.</li>
+</ul>
+<div class="note"><h4>Errores típicos al responder</h4><ul>
+<li>Solo cambiar la contraseña: los tokens activos y la regla de reenvío siguen funcionando.</li>
+<li>No avisar al área financiera: el mayor riesgo es el fraude del pago.</li>
+<li>No buscar otros buzones afectados.</li>
+</ul></div>`
+},
+quiz:[
+ {q:"Contratar un ciberseguro es un ejemplo de tratamiento de riesgo por:",
+  o:[["Mitigación","Mitigar reduce probabilidad o impacto con controles."],["Transferencia",""],["Evitación","Evitar es eliminar la actividad que genera el riesgo."],["Aceptación","Aceptar es asumirlo sin acción adicional."]],
+  a:1, e:"Se traslada el impacto financiero a un tercero."},
+ {q:"El riesgo que queda después de aplicar los controles es el:",
+  o:[["Riesgo inherente","El inherente es antes de controles."],["Riesgo residual",""],["Apetito de riesgo","Es el nivel que la organización está dispuesta a aceptar."],["Riesgo transferido","Es una forma de tratamiento."]],
+  a:1, e:"Residual = lo que permanece tras los controles."},
+ {q:"¿Qué documento de ISO 27001 indica qué controles del Anexo A se aplican y justifica las exclusiones?",
+  o:[["Política de seguridad","Define la dirección general, no el detalle de controles."],["Declaración de Aplicabilidad (SoA)",""],["Plan de tratamiento de riesgos","Define acciones, pero la aplicabilidad de controles está en la SoA."],["Informe de auditoría","Evalúa, no declara aplicabilidad."]],
+  a:1, e:"La SoA es obligatoria para certificarse."},
+ {q:"¿Cuántos controles tiene el Anexo A de ISO 27001:2022?",
+  o:[["114 en 14 dominios","Esa es la versión 2013."],["93 en 4 temas",""],["40 en 5 dominios","Eso describe a COBIT 2019."],["133 en 11 dominios","Esa fue la versión 2005."]],
+  a:1, e:"Organizacionales, de personas, físicos y tecnológicos."},
+ {q:"¿Qué función se agregó en NIST CSF 2.0?",
+  o:[["Detectar","Ya existía."],["Gobernar",""],["Recuperar","Ya existía."],["Auditar","No es una función del CSF."]],
+  a:1, e:"Gobernar se añadió en 2024."},
+ {q:"Un ransomware empieza a cifrar servidores. ¿Cuál es la primera acción?",
+  o:[["Restaurar inmediatamente desde el respaldo","Si no contienes primero, el ransomware puede cifrar también lo restaurado."],["Aislar los equipos afectados para contener la propagación",""],["Pagar el rescate para recuperar rápido","No garantiza recuperación y financia al atacante."],["Reiniciar todos los servidores","Puede destruir evidencia sin detener la propagación."]],
+  a:1, e:"Primero se contiene, luego se erradica y se recupera."}
+]},
+
+/* ---------------- MÓDULO 6 ---------------- */
+{
+id:"m6", title:"Transformación digital e IA aplicada",
+lead:"Diferenciar digitización, digitalización y transformación; construir una hoja de ruta; gestionar el cambio; y aplicar IA con gobierno y métricas.",
+fund:`
+<h2>1. Tres niveles distintos</h2>
+<div class="tbl-wrap"><table>
+<tr><th>Concepto</th><th>Qué es</th><th>Ejemplo</th></tr>
+<tr><td>Digitización</td><td>Pasar información de físico a digital</td><td>Escanear facturas en papel</td></tr>
+<tr><td>Digitalización</td><td>Usar tecnología para mejorar un proceso existente</td><td>Aprobar facturas en un flujo automatizado</td></tr>
+<tr><td>Transformación digital</td><td>Cambiar el modelo operativo o de negocio usando tecnología</td><td>Un nuevo servicio digital o un modelo basado en datos</td></tr>
+</table></div>
+<p>La transformación digital es sobre todo un cambio de <strong>personas, procesos y cultura</strong>; la tecnología es el habilitador.</p>
+
+<h2>2. Hoja de ruta de transformación</h2>
+<ol class="list">
+<li><strong>Diagnóstico de madurez</strong>: procesos, datos, tecnología, talento y cultura.</li>
+<li><strong>Visión y objetivos</strong> ligados a la estrategia de la empresa.</li>
+<li><strong>Portafolio de iniciativas</strong> priorizado en una matriz valor/esfuerzo.</li>
+<li><strong>Pilotos</strong> con métricas de línea base.</li>
+<li><strong>Escalamiento</strong> de lo que funciona y cierre de lo que no.</li>
+<li><strong>Medición continua</strong> y ajuste del portafolio.</li>
+</ol>
+<div class="tbl-wrap"><table>
+<tr><th>Matriz valor / esfuerzo</th><th>Esfuerzo bajo</th><th>Esfuerzo alto</th></tr>
+<tr><td>Valor alto</td><td>Quick wins: hacer ya</td><td>Proyectos estratégicos: planear</td></tr>
+<tr><td>Valor bajo</td><td>Rellenos: si sobra capacidad</td><td>Evitar</td></tr>
+</table></div>
+
+<h2>3. Gestión del cambio</h2>
+<p><strong>ADKAR</strong> (cambio individual): Awareness (conciencia), Desire (deseo), Knowledge (conocimiento), Ability (habilidad), Reinforcement (refuerzo).</p>
+<p><strong>Kotter</strong> (cambio organizacional, 8 pasos): crear urgencia, formar una coalición, definir la visión, comunicarla, eliminar obstáculos, generar victorias tempranas, consolidar y anclar en la cultura.</p>
+
+<h2>4. Automatización e IA: elegir la herramienta correcta</h2>
+<div class="tbl-wrap"><table>
+<tr><th>Tecnología</th><th>Sirve para</th><th>Ejemplo</th></tr>
+<tr><td>Automatización de flujos e integración (n8n, Power Automate)</td><td>Reglas claras entre sistemas con API</td><td>Correos de cobro por nivel de mora</td></tr>
+<tr><td>RPA</td><td>Imitar clics en sistemas sin API</td><td>Descargar reportes de un portal antiguo</td></tr>
+<tr><td>IA generativa y agentes</td><td>Texto no estructurado, clasificación, redacción, asistentes</td><td>Leer facturas de proveedores, responder preguntas internas</td></tr>
+<tr><td>Analítica y machine learning</td><td>Predecir o detectar patrones</td><td>Pronóstico de demanda, riesgo de cartera</td></tr>
+</table></div>
+
+<h2>5. Gobierno de la IA</h2>
+<ul>
+<li><strong>Datos</strong>: calidad, dueños y clasificación antes de conectar un modelo.</li>
+<li><strong>Privacidad</strong>: la Ley 1581 aplica también cuando un modelo procesa datos personales; evitar herramientas públicas sin contrato para datos de clientes.</li>
+<li><strong>Humano en el ciclo</strong> para decisiones de impacto (pagos, crédito, personas).</li>
+<li><strong>Riesgos</strong>: alucinaciones, fuga de información, sesgos, dependencia del proveedor.</li>
+<li><strong>Referentes</strong>: ISO/IEC 42001 (sistema de gestión de IA) y, en Colombia, el CONPES 4144 de 2025 (política nacional de IA).</li>
+</ul>
+
+<h2>6. Medir el éxito</h2>
+<p>No se mide por cantidad de bots o herramientas, sino por <strong>indicadores de negocio</strong> comparados contra una línea base: tiempo de ciclo, costo por transacción, errores, horas liberadas, adopción por los usuarios y satisfacción.</p>
+`,
+caso:{
+ prompt:`La presidencia dice: "Queremos usar inteligencia artificial en la compañía y tener resultados en 6 meses." No hay un inventario de casos de uso ni política de IA. ¿Cómo lo abordas?`,
+ sol:`
+<ul>
+<li><strong>Semanas 1 a 4, descubrimiento</strong>: talleres con cada área para identificar tareas repetitivas o con mucho texto; levantar 15 a 20 casos de uso con su volumen, tiempo y costo actual.</li>
+<li><strong>Priorización</strong>: matriz valor/esfuerzo más criterios de riesgo (datos sensibles, impacto de un error). Elegir 2 o 3 quick wins y 1 estratégico.</li>
+<li><strong>Gobierno mínimo</strong>: política de uso aceptable de IA, herramientas aprobadas con contrato empresarial, clasificación de datos y revisión humana obligatoria en decisiones sensibles.</li>
+<li><strong>Meses 2 a 4, pilotos</strong>: con línea base medida antes, usuarios champions por área y criterios de éxito definidos.</li>
+<li><strong>Meses 5 y 6, escalar</strong>: llevar a producción lo que cumplió, documentar, capacitar y presentar resultados en indicadores de negocio.</li>
+</ul>
+<div class="note"><h4>Errores típicos al responder</h4><ul>
+<li>Empezar por la herramienta ("compremos licencias") en vez del problema.</li>
+<li>No medir línea base: en seis meses no se podrá demostrar valor.</li>
+<li>Ignorar privacidad y seguridad de los datos.</li>
+<li>Olvidar la adopción: una herramienta sin uso no transforma nada.</li>
+</ul></div>`
+},
+quiz:[
+ {q:"Escanear las facturas en papel y guardarlas como PDF es:",
+  o:[["Digitización",""],["Digitalización","La digitalización mejora el proceso, no solo el formato."],["Transformación digital","No cambia el modelo operativo."],["Automatización inteligente","No hay automatización del proceso."]],
+  a:0, e:"Solo cambia el soporte de físico a digital."},
+ {q:"¿Cuál debería ser el primer paso antes de elegir una tecnología de IA?",
+  o:[["Comprar licencias para todos","Es empezar por la herramienta."],["Entender el problema de negocio y medir el proceso actual",""],["Contratar científicos de datos","Puede ser necesario después, no primero."],["Desarrollar un modelo propio","Normalmente es lo más costoso y no siempre se requiere."]],
+  a:1, e:"Sin problema claro ni línea base, no hay forma de priorizar ni de medir valor."},
+ {q:"¿Cuál es el orden correcto del modelo ADKAR?",
+  o:[["Conocimiento, conciencia, deseo, habilidad, refuerzo","La conciencia va primero."],["Conciencia, deseo, conocimiento, habilidad, refuerzo",""],["Deseo, conciencia, habilidad, conocimiento, refuerzo","Primero se entiende por qué cambiar."],["Conciencia, conocimiento, deseo, refuerzo, habilidad","El deseo va antes del conocimiento y la habilidad antes del refuerzo."]],
+  a:1, e:"Awareness, Desire, Knowledge, Ability, Reinforcement."},
+ {q:"En una matriz valor/esfuerzo, una iniciativa de alto valor y bajo esfuerzo es:",
+  o:[["Un proyecto estratégico","Esos son alto valor y alto esfuerzo."],["Un quick win",""],["Algo a evitar","Se evita lo de bajo valor y alto esfuerzo."],["Un relleno","Los rellenos son de bajo valor."]],
+  a:1, e:"Se ejecuta de primero para generar confianza."},
+ {q:"Un analista pega una base de clientes en una herramienta pública de IA sin contrato. ¿Cuál es el principal riesgo?",
+  o:[["Que la respuesta sea lenta","Es un riesgo menor frente al legal."],["Fuga de datos personales e incumplimiento de la Ley 1581",""],["Que el modelo se equivoque en ortografía","No es el riesgo principal."],["Ninguno si la herramienta es popular","La popularidad no garantiza tratamiento adecuado de datos."]],
+  a:1, e:"Se envían datos personales a un tercero sin las garantías requeridas."},
+ {q:"¿Cuál es la mejor forma de medir el éxito de una automatización?",
+  o:[["Número de flujos creados","Es un indicador de actividad, no de resultado."],["Comparar indicadores del proceso contra la línea base (tiempo, costo, errores)",""],["Opinión del equipo de TI","Es subjetiva y no la del negocio."],["Cantidad de licencias compradas","Mide gasto, no valor."]],
+  a:1, e:"El valor se demuestra con indicadores de negocio antes y después."}
+]},
+
+/* ---------------- MÓDULO 7 ---------------- */
+{
+id:"m7", title:"Continuidad, recuperación y nube",
+lead:"BIA, RTO, RPO y MTPD; estrategias de recuperación; respaldos; pruebas; disponibilidad; y modelos de nube con responsabilidad compartida.",
+fund:`
+<h2>1. Tres planes distintos</h2>
+<div class="tbl-wrap"><table>
+<tr><th>Plan</th><th>Enfoque</th></tr>
+<tr><td>BCP (continuidad del negocio)</td><td>Mantener las operaciones del negocio ante una interrupción. Norma: ISO 22301.</td></tr>
+<tr><td>DRP (recuperación ante desastres)</td><td>Recuperar la tecnología: sistemas, datos e infraestructura.</td></tr>
+<tr><td>Plan de respuesta a incidentes</td><td>Gestionar un incidente de seguridad.</td></tr>
+</table></div>
+
+<h2>2. Análisis de impacto al negocio (BIA)</h2>
+<p>Identifica los procesos críticos, el impacto de su interrupción en el tiempo (financiero, legal, reputacional, operativo), sus dependencias tecnológicas y de proveedores, y los objetivos de recuperación.</p>
+<div class="tbl-wrap"><table>
+<tr><th>Métrica</th><th>Pregunta que responde</th></tr>
+<tr><td><strong>RTO</strong> (tiempo objetivo de recuperación)</td><td>¿En cuánto tiempo debe volver el servicio?</td></tr>
+<tr><td><strong>RPO</strong> (punto objetivo de recuperación)</td><td>¿Cuántos datos (medidos en tiempo) podemos perder como máximo?</td></tr>
+<tr><td><strong>MTPD</strong> (tiempo máximo tolerable de interrupción)</td><td>¿A partir de cuándo el daño es inaceptable?</td></tr>
+<tr><td>MTTR / MTBF</td><td>Tiempo medio de reparación / tiempo medio entre fallas</td></tr>
+</table></div>
+<p>Regla: <strong>RTO &lt; MTPD</strong>. El RPO define la frecuencia de respaldo o replicación; el RTO define la estrategia de recuperación.</p>
+
+<h2>3. Estrategias de recuperación</h2>
+<div class="tbl-wrap"><table>
+<tr><th>Estrategia</th><th>RTO / RPO típicos</th><th>Costo</th></tr>
+<tr><td>Respaldo y restauración (sitio frío)</td><td>Horas a días</td><td>Bajo</td></tr>
+<tr><td>Pilot light (lo mínimo encendido)</td><td>Horas</td><td>Medio-bajo</td></tr>
+<tr><td>Warm standby (sitio tibio, reducido pero funcionando)</td><td>Minutos a pocas horas</td><td>Medio-alto</td></tr>
+<tr><td>Activo-activo multisitio (sitio caliente)</td><td>Casi cero</td><td>Alto</td></tr>
+</table></div>
+
+<h2>4. Respaldos</h2>
+<p>Regla <strong>3-2-1</strong>: 3 copias de los datos, en 2 medios distintos, 1 fuera del sitio. La versión moderna <strong>3-2-1-1-0</strong> agrega 1 copia inmutable o desconectada (protege contra ransomware) y 0 errores en las pruebas de restauración.</p>
+<p>Un respaldo que no se ha probado restaurar no es un respaldo confiable.</p>
+
+<h2>5. Pruebas del plan</h2>
+<p>De menor a mayor exigencia: revisión documental (checklist), ejercicio de mesa (tabletop), recorrido paso a paso (walkthrough), simulación, prueba en paralelo y prueba de interrupción completa.</p>
+
+<h2>6. Disponibilidad</h2>
+<div class="tbl-wrap"><table>
+<tr><th>Disponibilidad</th><th>Caída máxima al año</th></tr>
+<tr><td>99 %</td><td>≈ 3,65 días</td></tr>
+<tr><td>99,9 %</td><td>≈ 8,76 horas</td></tr>
+<tr><td>99,99 %</td><td>≈ 52,6 minutos</td></tr>
+<tr><td>99,999 %</td><td>≈ 5,3 minutos</td></tr>
+</table></div>
+<p>Componentes <strong>en serie</strong>: se multiplican las disponibilidades (dos al 99,9 % dan ≈ 99,8 %). Componentes <strong>en paralelo</strong> (redundancia): <span class="formula">1 − (1 − A)²</span>, que mejora la disponibilidad.</p>
+<p>Monitorear capacidad, disponibilidad y desempeño exige umbrales, alertas y tendencias (no solo "está arriba o abajo").</p>
+
+<h2>7. Nube</h2>
+<div class="tbl-wrap"><table>
+<tr><th>Modelo</th><th>El proveedor gestiona</th><th>Tú gestionas</th></tr>
+<tr><td>IaaS</td><td>Hardware, red física, virtualización</td><td>Sistema operativo, parches, aplicaciones, datos, identidades</td></tr>
+<tr><td>PaaS</td><td>Lo anterior más el sistema operativo y la plataforma</td><td>Aplicaciones, datos, identidades</td></tr>
+<tr><td>SaaS</td><td>Casi todo</td><td>Datos, identidades, configuración y accesos</td></tr>
+</table></div>
+<p>Modelos de despliegue: pública, privada, híbrida y multinube. En todos, <strong>los datos y los accesos siempre son tu responsabilidad</strong> (modelo de responsabilidad compartida). Para costos, la práctica es <strong>FinOps</strong>: visibilidad, asignación por área y optimización continua.</p>
+`,
+caso:{
+ prompt:`El ERP es crítico. El negocio dice que puede perder como máximo 1 hora de información y que el sistema no puede estar caído más de 4 horas. Hoy solo hay un respaldo nocturno en un NAS de la misma sede. ¿Qué propones?`,
+ sol:`
+<ul>
+<li><strong>Traducir requisitos</strong>: RPO = 1 hora, RTO = 4 horas. El respaldo nocturno da un RPO de hasta 24 horas: no cumple.</li>
+<li><strong>Datos</strong>: respaldos incrementales o logs de transacciones de la base de datos cada 15 a 30 minutos, más replicación a un sitio secundario o a la nube.</li>
+<li><strong>Estrategia</strong>: warm standby en nube o sitio alterno, con la máquina preparada y la base sincronizada, para cumplir 4 horas.</li>
+<li><strong>Regla 3-2-1-1-0</strong>: copia inmutable fuera de la sede para protegerse del ransomware.</li>
+<li><strong>Documentación</strong>: runbook de recuperación paso a paso, responsables y árbol de llamadas.</li>
+<li><strong>Pruebas</strong>: restauración mensual de muestras y prueba completa semestral midiendo el RTO y RPO reales.</li>
+</ul>
+<div class="note"><h4>Errores típicos al responder</h4><ul>
+<li>Confundir RPO con RTO.</li>
+<li>Tener los respaldos en la misma sede que el servidor: un incendio o un ransomware se lleva ambos.</li>
+<li>No probar la restauración.</li>
+</ul></div>`
+},
+quiz:[
+ {q:"La cantidad máxima de datos que el negocio tolera perder, expresada en tiempo, es el:",
+  o:[["RTO","El RTO es el tiempo para restaurar el servicio."],["RPO",""],["MTPD","Es el tiempo máximo tolerable de interrupción."],["MTBF","Es el tiempo medio entre fallas."]],
+  a:1, e:"RPO = punto objetivo de recuperación."},
+ {q:"¿Qué relación debe cumplirse entre RTO y MTPD?",
+  o:[["RTO mayor que MTPD","Recuperarías después de que el daño ya es inaceptable."],["RTO menor que MTPD",""],["Deben ser iguales siempre","El RTO debe dejar margen."],["No tienen relación","El RTO se deriva del MTPD."]],
+  a:1, e:"Se debe recuperar antes de llegar al límite tolerable."},
+ {q:"La regla de respaldos 3-2-1 significa:",
+  o:[["3 respaldos diarios, 2 semanales, 1 mensual","Eso es un esquema de retención."],["3 copias, 2 medios distintos, 1 fuera del sitio",""],["3 servidores, 2 sitios, 1 nube","No es la definición."],["3 horas de RPO, 2 de RTO, 1 prueba al año","No es la definición."]],
+  a:1, e:"Diversificación de copias, medios y ubicaciones."},
+ {q:"Una disponibilidad del 99,9 % permite al año una caída aproximada de:",
+  o:[["52 minutos","Eso corresponde a 99,99 %."],["8,76 horas",""],["3,65 días","Eso corresponde a 99 %."],["5 minutos","Eso corresponde a 99,999 %."]],
+  a:1, e:"0,1 % de 8.760 horas ≈ 8,76 horas."},
+ {q:"En un servicio IaaS, ¿quién aplica los parches del sistema operativo?",
+  o:[["El proveedor de nube","En IaaS el proveedor llega hasta la virtualización."],["El cliente",""],["Nadie, se aplican solos","Siempre hay un responsable."],["Depende del día","Lo define el modelo de responsabilidad compartida."]],
+  a:1, e:"En IaaS el sistema operativo es responsabilidad del cliente."},
+ {q:"Dos componentes en serie con 99,9 % de disponibilidad cada uno dan una disponibilidad total aproximada de:",
+  o:[["99,99 %","Eso ocurriría en paralelo, no en serie."],["99,9 %","En serie la disponibilidad baja."],["99,8 %",""],["99,0 %","La pérdida no es tan grande."]],
+  a:2, e:"0,999 × 0,999 ≈ 0,998."}
+]},
+
+/* ---------------- MÓDULO 8 ---------------- */
+{
+id:"m8", title:"Cumplimiento normativo en Colombia",
+lead:"Protección de datos (Ley 1581), delitos informáticos, comercio electrónico, marco TIC y cómo contratar proveedores tecnológicos con cumplimiento.",
+fund:`
+<h2>1. Protección de datos personales</h2>
+<p><strong>Ley 1581 de 2012</strong> (régimen general de habeas data), reglamentada por el <strong>Decreto 1377 de 2013</strong>, hoy compilado en el <strong>Decreto 1074 de 2015</strong>. La autoridad es la <strong>Superintendencia de Industria y Comercio (SIC)</strong>.</p>
+<h3>Principios</h3>
+<p>Legalidad, finalidad, libertad, veracidad o calidad, transparencia, acceso y circulación restringida, seguridad y confidencialidad.</p>
+<h3>Roles</h3>
+<div class="tbl-wrap"><table>
+<tr><th>Rol</th><th>Quién es</th></tr>
+<tr><td>Responsable del tratamiento</td><td>Decide sobre la base de datos y su tratamiento (la empresa)</td></tr>
+<tr><td>Encargado del tratamiento</td><td>Trata datos por cuenta del responsable (un proveedor de nube, un call center)</td></tr>
+<tr><td>Titular</td><td>La persona dueña de los datos</td></tr>
+</table></div>
+<h3>Obligaciones clave</h3>
+<ul>
+<li><strong>Autorización</strong> previa, expresa e informada del titular.</li>
+<li><strong>Política de tratamiento</strong> publicada y <strong>aviso de privacidad</strong>.</li>
+<li><strong>Datos sensibles</strong> (salud, biométricos, orientación política, religiosa, sexual, entre otros): autorización explícita y facultativa. Los datos de niños, niñas y adolescentes tienen protección reforzada.</li>
+<li><strong>Derechos del titular</strong>: conocer, actualizar, rectificar, suprimir y revocar la autorización.</li>
+<li><strong>Plazos</strong>: consultas en 10 días hábiles (prorrogables 5); reclamos en 15 días hábiles (prorrogables 8).</li>
+<li><strong>RNBD</strong>: registro de bases de datos ante la SIC, obligatorio para sociedades con activos superiores a 100.000 UVT.</li>
+<li><strong>Incidentes de seguridad</strong> que afecten datos personales se reportan a la SIC a través del RNBD, dentro de los 15 días hábiles siguientes a su detección.</li>
+<li><strong>Responsabilidad demostrada</strong>: no basta con cumplir, hay que poder probarlo (programa de gestión de datos, oficial de protección de datos, evidencias).</li>
+<li><strong>Sanciones</strong>: multas de hasta 2.000 SMMLV, entre otras.</li>
+</ul>
+<h3>Transmisión vs. transferencia</h3>
+<p><strong>Transmisión</strong>: los datos van a un encargado que los trata por cuenta del responsable; se formaliza con un <strong>contrato de transmisión</strong>. <strong>Transferencia</strong>: los datos van a otro responsable; si es internacional, el país destino debe tener un nivel adecuado de protección o aplicarse una excepción.</p>
+
+<h2>2. Otras normas que conviene conocer</h2>
+<div class="tbl-wrap"><table>
+<tr><th>Norma</th><th>Tema</th></tr>
+<tr><td>Ley 1273 de 2009</td><td>Delitos informáticos (acceso abusivo, interceptación, daño informático, uso de software malicioso, suplantación de sitios, entre otros)</td></tr>
+<tr><td>Ley 527 de 1999</td><td>Mensajes de datos, comercio electrónico y firmas digitales</td></tr>
+<tr><td>Ley 23 de 1982</td><td>Derechos de autor, base del licenciamiento de software</td></tr>
+<tr><td>Ley 1341 de 2009, modificada por la Ley 1978 de 2019</td><td>Marco del sector TIC; MinTIC como rector de política y la CRC como regulador de redes y servicios de telecomunicaciones</td></tr>
+<tr><td>Ley 1712 de 2014</td><td>Transparencia y acceso a la información pública; puede aplicar a empresas con participación pública, conviene validar su alcance según la naturaleza de la empresa</td></tr>
+<tr><td>CONPES 3995 de 2020</td><td>Política nacional de confianza y seguridad digital</td></tr>
+</table></div>
+
+<h2>3. Cumplimiento al contratar tecnología</h2>
+<p>Al gestionar proveedores tecnológicos, el contrato debe incluir:</p>
+<ul>
+<li>Acuerdos de nivel de servicio (ANS) con penalidades.</li>
+<li>Confidencialidad y contrato de transmisión de datos personales.</li>
+<li>Requisitos de seguridad (cifrado, MFA, gestión de vulnerabilidades) y certificaciones (por ejemplo, ISO 27001, SOC 2).</li>
+<li>Derecho de auditoría.</li>
+<li>Ubicación de los datos.</li>
+<li>Plan de salida: devolución y borrado de datos al terminar.</li>
+<li>Gestión de licencias: cumplir con lo contratado evita sanciones y auditorías costosas.</li>
+</ul>
+`,
+caso:{
+ prompt:`El área comercial quiere contratar un CRM en la nube cuyo proveedor procesa los datos en Estados Unidos. Allí estarán nombres, teléfonos, correos e historial de compras de clientes. ¿Qué debes revisar antes de firmar?`,
+ sol:`
+<ul>
+<li><strong>Rol del proveedor</strong>: actúa como encargado; se formaliza con un contrato de transmisión de datos que defina finalidades, medidas de seguridad, confidencialidad y prohibición de uso propio.</li>
+<li><strong>Base legal</strong>: verificar que la autorización de los clientes cubre esa finalidad y que la política de tratamiento contempla la transmisión internacional.</li>
+<li><strong>Seguridad del proveedor</strong>: certificaciones, cifrado en tránsito y en reposo, MFA, registro de accesos, gestión de incidentes y tiempos de notificación.</li>
+<li><strong>Contrato</strong>: ANS de disponibilidad, derecho de auditoría, ubicación de datos, subencargados autorizados y plan de salida con devolución y borrado.</li>
+<li><strong>Internamente</strong>: actualizar el RNBD si corresponde, definir accesos por rol en el CRM y registrar la evaluación como evidencia de responsabilidad demostrada.</li>
+</ul>
+<div class="note"><h4>Errores típicos al responder</h4><ul>
+<li>Asumir que, por ser un proveedor grande, el cumplimiento está garantizado.</li>
+<li>Confundir transmisión con transferencia.</li>
+<li>Olvidar el plan de salida: sin él, se depende del proveedor para recuperar los datos.</li>
+</ul></div>`
+},
+quiz:[
+ {q:"¿Qué entidad vigila la protección de datos personales en Colombia?",
+  o:[["MinTIC","Es el rector de política TIC, no la autoridad de datos personales."],["Superintendencia de Industria y Comercio (SIC)",""],["CRC","Regula redes y servicios de telecomunicaciones."],["Superintendencia Financiera","Vigila al sector financiero, no el régimen general de datos."]],
+  a:1, e:"La SIC, a través de su delegatura de protección de datos."},
+ {q:"Un proveedor de nube que almacena datos de clientes por cuenta de la empresa es el:",
+  o:[["Responsable del tratamiento","El responsable es quien decide; aquí es la empresa."],["Encargado del tratamiento",""],["Titular","El titular es el cliente dueño de sus datos."],["Oficial de protección de datos","Es un rol interno de la empresa."]],
+  a:1, e:"Trata datos por cuenta del responsable."},
+ {q:"¿Cuál es el plazo para responder una consulta de un titular?",
+  o:[["5 días hábiles","El plazo es mayor."],["10 días hábiles, prorrogables 5",""],["15 días hábiles, prorrogables 8","Ese es el plazo para reclamos."],["30 días calendario","No es el plazo legal."]],
+  a:1, e:"Consultas: 10 días hábiles. Reclamos: 15."},
+ {q:"¿Qué ley tipifica los delitos informáticos en Colombia?",
+  o:[["Ley 1581 de 2012","Es protección de datos."],["Ley 1273 de 2009",""],["Ley 527 de 1999","Es comercio electrónico y firmas."],["Ley 1341 de 2009","Es el marco del sector TIC."]],
+  a:1, e:"Ley 1273 de 2009, artículos 269A a 269J del Código Penal."},
+ {q:"¿Cuál de estos es un dato sensible?",
+  o:[["Correo corporativo","Es un dato personal, pero no sensible."],["Huella dactilar",""],["Cargo en la empresa","No es sensible."],["Número de celular","Es personal, no sensible."]],
+  a:1, e:"Los datos biométricos son sensibles."},
+ {q:"Para entregar datos a un proveedor que los procesará por cuenta de la empresa, se requiere:",
+  o:[["Un contrato de transmisión de datos",""],["Nueva autorización de cada titular en todos los casos","Si existe contrato de transmisión y la finalidad está cubierta, no se exige nueva autorización."],["Permiso de MinTIC","MinTIC no autoriza estas entregas."],["Nada, si el proveedor es nacional","La obligación existe también con proveedores nacionales."]],
+  a:0, e:"El contrato de transmisión define obligaciones del encargado."}
+]}
+];
+
+const PLAN = `
+<h1>Plan para el fin de semana</h1>
+<p class="lead">Unas 12 horas de estudio repartidas en dos días. El sábado se concentra en lo que más te puede exigir: gobierno y arquitectura.</p>
+<div class="plan-day"><h3>Sábado</h3>
+<ul>
+<li><strong>8:00 a 10:00</strong>, módulo 2, COBIT. Lee los fundamentos y apréndete el mapa de responsabilidades → objetivos.</li>
+<li><strong>10:15 a 12:15</strong>, módulo 4, TOGAF. Repite en voz alta las fases del ADM hasta poder decirlas sin mirar.</li>
+<li><strong>14:00 a 15:30</strong>, módulo 3, ITIL.</li>
+<li><strong>15:45 a 17:15</strong>, módulo 1, gestión de proyectos. Haz los cálculos de valor ganado a mano.</li>
+<li><strong>Cierre</strong>: autoevaluación de los cuatro módulos y repaso de lo que fallaste.</li>
+</ul></div>
+<div class="plan-day"><h3>Domingo</h3>
+<ul>
+<li><strong>8:00 a 9:45</strong>, módulo 5, seguridad.</li>
+<li><strong>10:00 a 11:30</strong>, módulo 7, continuidad y nube.</li>
+<li><strong>11:45 a 13:00</strong>, módulo 8, cumplimiento.</li>
+<li><strong>14:30 a 15:45</strong>, módulo 6, transformación digital e IA. Prepara un caso propio de automatización con cifras.</li>
+<li><strong>16:00 a 17:00</strong>, simulacro general con preguntas mezcladas.</li>
+<li><strong>Cierre</strong>: escribe tu respuesta a dos casos sin mirar la solución y luego compárala.</li>
+</ul></div>
+<div class="note"><h4>Cómo responder un caso en la prueba</h4>
+<p>Una estructura que funciona casi siempre: <strong>1)</strong> entender el problema y lo que se necesita del negocio; <strong>2)</strong> diagnóstico o línea base; <strong>3)</strong> propuesta por fases; <strong>4)</strong> gobierno y roles; <strong>5)</strong> riesgos; <strong>6)</strong> indicadores para medir el éxito. Nombra el marco que respalda cada paso (COBIT, ITIL, TOGAF, ISO 27001).</p></div>
+`;
+
+/* ============================================================
+   ESTADO Y PERSISTENCIA
+   ============================================================ */
+const KEY = "guia-estudio-td-v1";
+let state = {answers:{}, notes:{}, sim:null};
+try{ const s = JSON.parse(localStorage.getItem(KEY)||"null"); if(s) state = Object.assign(state,s); }catch(e){}
+function save(){ try{ localStorage.setItem(KEY, JSON.stringify(state)); }catch(e){} }
+
+const ALLQ = [];
+MODULES.forEach((m,mi)=>m.quiz.forEach((q,qi)=>ALLQ.push({id:m.id+"-"+qi, mod:mi, q})));
+function totalCorrect(){ return ALLQ.filter(x=>state.answers[x.id]===x.q.a).length; }
+function modScore(m){ let c=0,d=0; m.quiz.forEach((q,i)=>{const a=state.answers[m.id+"-"+i]; if(a!==undefined){d++; if(a===q.a)c++;}}); return {c,d,t:m.quiz.length}; }
+
+/* ============================================================
+   RENDER
+   ============================================================ */
+const main = document.getElementById("main");
+const esc = s => s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+
+function renderNav(){
+  const route = location.hash.slice(1)||"inicio";
+  let h = `<li><a href="#inicio" class="${route==="inicio"?"active":""}"><span class="n">·</span><span>Inicio y plan</span><span></span></a></li><li class="sep" aria-hidden="true"></li>`;
+  MODULES.forEach((m,i)=>{
+    const s = modScore(m);
+    h += `<li><a href="#${m.id}" class="${route===m.id?"active":""}"><span class="n">${i+1}</span><span>${m.title}</span><span class="sc">${s.d?s.c+"/"+s.t:""}</span></a></li>`;
+  });
+  h += `<li class="sep" aria-hidden="true"></li><li><a href="#simulacro" class="${route==="simulacro"?"active":""}"><span class="n">∑</span><span>Simulacro general</span><span></span></a></li>`;
+  document.getElementById("navList").innerHTML = h;
+
+  let o = `<option value="inicio">Inicio y plan</option>`;
+  MODULES.forEach((m,i)=>o+=`<option value="${m.id}">${i+1}. ${m.title}</option>`);
+  o += `<option value="simulacro">Simulacro general</option>`;
+  const sel = document.getElementById("mobileNav"); sel.innerHTML=o; sel.value=route;
+
+  const tc = totalCorrect(), tot = ALLQ.length;
+  document.getElementById("meterBar").style.width = (tc/tot*100)+"%";
+  document.getElementById("meterLabel").textContent = `${tc} de ${tot} preguntas acertadas`;
+  document.getElementById("mobilePct").textContent = `${tc}/${tot}`;
+}
+
+function quizHTML(items, prefix){
+  return items.map((it,n)=>{
+    const {id,q} = it;
+    const chosen = state.answers[id];
+    const done = chosen!==undefined;
+    const opts = q.o.map((op,i)=>{
+      let cls="opt", mark="";
+      if(done){ if(i===q.a){cls+=" correct";mark="✓";} else if(i===chosen){cls+=" wrong";mark="✗";} }
+      return `<button type="button" class="${cls}" data-q="${id}" data-i="${i}" ${done?"disabled":""}>${mark?`<span class="mark">${mark}</span>`:""}${esc(op[0])}</button>`;
+    }).join("");
+    let fb="";
+    if(done){
+      if(chosen===q.a) fb=`<div class="fb ok"><b class="v">Correcto.</b>${esc(q.e)}</div>`;
+      else fb=`<div class="fb bad"><b class="v">Incorrecto.</b>Tu respuesta: ${esc(q.o[chosen][1])}<br>Correcta: <strong>${esc(q.o[q.a][0])}</strong>. ${esc(q.e)}</div>`;
+    }
+    const head = prefix ? `${prefix(it)} · Pregunta ${n+1} de ${items.length}` : `Pregunta ${n+1} de ${items.length}`;
+    return `<div class="q"><div class="q-head">${head}</div><div class="q-text">${esc(q.q)}</div>${opts}${fb}</div>`;
+  }).join("");
+}
+
+function renderHome(){
+  main.innerHTML = PLAN + `<h2>Módulos</h2><ul>${MODULES.map((m,i)=>`<li><a href="#${m.id}">${i+1}. ${m.title}</a>: ${m.lead}</li>`).join("")}</ul>
+  <div class="row"><button class="btn ghost" type="button" id="resetAll">Borrar todo mi progreso</button></div>`;
+  document.getElementById("resetAll").onclick=()=>{ if(confirm("¿Borrar todas tus respuestas y notas?")){ state={answers:{},notes:{},sim:null}; save(); render(); } };
+}
+
+function renderModule(mi, tab){
+  const m = MODULES[mi];
+  const s = modScore(m);
+  const tabs = [["fund","Fundamentos"],["caso","Caso práctico"],["quiz",`Autoevaluación${s.d?` (${s.c}/${s.t})`:""}`]];
+  let body = "";
+  if(tab==="fund") body = m.fund + `<div class="row"><a class="btn" href="#${m.id}/caso">Ir al caso práctico</a></div>`;
+  if(tab==="caso"){
+    const note = state.notes[m.id]||"";
+    body = `<div class="case"><div class="tag">Caso tipo prueba</div><p>${m.caso.prompt}</p>
+      <label for="ans" class="saved">Escribe tu respuesta antes de ver la solución (se guarda en este dispositivo):</label>
+      <textarea id="ans" placeholder="Tu enfoque, fases, riesgos e indicadores…">${esc(note)}</textarea>
+      <div class="row"><button class="btn" type="button" id="showSol">Ver solución comentada</button><span class="saved" id="savedMsg"></span></div>
+      <div class="solution" id="sol" hidden>${m.caso.sol}</div></div>
+      <div class="row"><a class="btn ghost" href="#${m.id}/quiz">Ir a la autoevaluación</a></div>`;
+  }
+  if(tab==="quiz"){
+    const items = m.quiz.map((q,i)=>({id:m.id+"-"+i,q}));
+    body = `<p class="saved">Al elegir una opción verás si acertaste y, si no, por qué tu respuesta es incorrecta.</p>` + quizHTML(items) +
+      `<div class="score">${s.d===s.t?`Resultado: ${s.c} de ${s.t}`:`Respondidas ${s.d} de ${s.t}`}</div>
+      <div class="row"><button class="btn ghost" type="button" id="retry">Reintentar este módulo</button>${mi<MODULES.length-1?`<a class="btn" href="#${MODULES[mi+1].id}">Siguiente módulo</a>`:`<a class="btn" href="#simulacro">Ir al simulacro</a>`}</div>`;
+  }
+  main.innerHTML = `<div class="mod-num">${mi+1}</div><h1>${m.title}</h1><p class="lead">${m.lead}</p>
+    <div class="tabs" role="tablist">${tabs.map(([k,l])=>`<a class="tab" role="tab" href="#${m.id}/${k}" aria-selected="${tab===k}">${l}</a>`).join("")}</div>${body}`;
+
+  if(tab==="caso"){
+    const ta=document.getElementById("ans"), msg=document.getElementById("savedMsg");
+    let t; ta.addEventListener("input",()=>{clearTimeout(t);t=setTimeout(()=>{state.notes[m.id]=ta.value;save();msg.textContent="Guardado";},400);});
+    document.getElementById("showSol").onclick=e=>{const el=document.getElementById("sol");el.hidden=!el.hidden;e.target.textContent=el.hidden?"Ver solución comentada":"Ocultar solución";};
+  }
+  if(tab==="quiz"){
+    document.getElementById("retry").onclick=()=>{ m.quiz.forEach((q,i)=>delete state.answers[m.id+"-"+i]); save(); render(); };
+  }
+}
+
+function renderSim(){
+  if(!state.sim){
+    const ids = ALLQ.map(x=>x.id).sort(()=>Math.random()-.5).slice(0,16);
+    state.sim = {ids, answers:{}}; save();
+  }
+  const items = state.sim.ids.map(id=>{const x=ALLQ.find(y=>y.id===id); return {id:"sim:"+id, q:x.q, mod:x.mod};});
+  const prev = state.answers; // swap answers store for sim
+  items.forEach(it=>{ if(state.sim.answers[it.id]!==undefined) state.answers[it.id]=state.sim.answers[it.id]; });
+  const done = items.filter(it=>state.sim.answers[it.id]!==undefined);
+  const ok = done.filter(it=>state.sim.answers[it.id]===it.q.a).length;
+  main.innerHTML = `<h1>Simulacro general</h1><p class="lead">16 preguntas al azar de los ocho módulos, como en una prueba real. Úsalo al final, cuando ya hayas estudiado todo.</p>`
+    + quizHTML(items, it=>`Módulo ${it.mod+1}`)
+    + `<div class="score">${done.length===items.length?`Resultado: ${ok} de ${items.length} (${Math.round(ok/items.length*100)} %)`:`Respondidas ${done.length} de ${items.length}`}</div>
+    <div class="row"><button class="btn" type="button" id="newSim">Generar otro simulacro</button></div>`;
+  items.forEach(it=>delete state.answers[it.id]);
+  document.getElementById("newSim").onclick=()=>{ state.sim=null; save(); render(); window.scrollTo(0,0); };
+}
+
+function render(){
+  const r = (location.hash.slice(1)||"inicio").split("/");
+  const mi = MODULES.findIndex(m=>m.id===r[0]);
+  if(r[0]==="simulacro") renderSim();
+  else if(mi>=0) renderModule(mi, ["fund","caso","quiz"].includes(r[1])?r[1]:"fund");
+  else renderHome();
+  renderNav();
+}
+
+/* Respuestas del quiz */
+main.addEventListener("click",e=>{
+  const b = e.target.closest(".opt"); if(!b||b.disabled) return;
+  const id=b.dataset.q, i=+b.dataset.i;
+  const y = window.scrollY;
+  if(id.startsWith("sim:")) state.sim.answers[id]=i; else state.answers[id]=i;
+  save(); render(); window.scrollTo(0,y);
+});
+
+let lastRoute = null;
+window.addEventListener("hashchange",()=>{ const base=location.hash.split("/")[0]; render(); if(base!==lastRoute) window.scrollTo(0,0); lastRoute=base; });
+document.getElementById("mobileNav").addEventListener("change",e=>{ location.hash = e.target.value; });
+
+/* Tema */
+const root=document.documentElement;
+try{ const t=localStorage.getItem(KEY+"-theme"); if(t) root.dataset.theme=t; }catch(e){}
+document.getElementById("themeBtn").onclick=()=>{
+  const dark = root.dataset.theme ? root.dataset.theme==="dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+  root.dataset.theme = dark?"light":"dark";
+  try{ localStorage.setItem(KEY+"-theme", root.dataset.theme); }catch(e){}
+};
+
+lastRoute = location.hash.split("/")[0];
+render();
+</script>
+</body>
+</html>
